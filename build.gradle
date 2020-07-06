@@ -1,16 +1,24 @@
+buildscript {
+    dependencies {
+        classpath("com.diffplug.spotless:spotless-plugin-gradle:4.5.1") {
+            exclude group: "org.eclipse.jgit"
+        }
+    }
+}
+
 plugins {
     id "java-library"
     id "java-test-fixtures"
-    id "com.diffplug.gradle.spotless" version "4.5.1"
     id "com.github.ben-manes.versions" version "0.28.0"
     id "jacoco"
     id "com.jfrog.bintray" version "1.8.5"
     id "com.jfrog.artifactory" version "4.16.0"
-    id "pl.allegro.tech.build.axion-release" version "1.11.0"
+    id "pl.allegro.tech.build.axion-release" version "1.12.0"
 }
 
 apply plugin: "jacoco"
 apply plugin: "maven-publish"
+apply plugin: "com.diffplug.gradle.spotless"
 
 group "com.github.michaelruocco"
 
