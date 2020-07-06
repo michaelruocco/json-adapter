@@ -142,6 +142,12 @@ publishing {
     publications {
         mavenPublication(MavenPublication) {
             from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
             groupId project.group
             artifactId "json-adapter"
             version project.version
