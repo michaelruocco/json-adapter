@@ -1,0 +1,45 @@
+language: java
+jdk: openjdk8
+sudo: false
+
+branches:
+  except:
+    - /^jackson-json-api-*/
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+after_success:
+  - ./gradlew jacocoTestReport
+  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+
+stages:
+  - name: build
+
+  - name: snapshot
+    if: branch != master
+
+  - name: release
+    if: branch = master
+
+jobs:
+  include:
+    - stage: build
+      script: ./gradlew currentVersion spotlessCheck build dependencyUpdates
+
+    - stage: snapshot
+      script: ./gradlew artifactoryPublish -Dbuild.number=$TRAVIS_BUILD_NUMBER
+
+    - stage: release
+      script:
+        - >
+          git checkout $TRAVIS_BRANCH;
+          ./gradlew release -Prelease.customUsername=$GITHUB_TOKEN;
+          ./gradlew bintrayUpload -Dbuild.number=$TRAVIS_BUILD_NUMBER

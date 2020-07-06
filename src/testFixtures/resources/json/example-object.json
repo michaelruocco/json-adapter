@@ -1,0 +1,12 @@
+{
+  "string1": "my-value-1",
+  "numeric1": 1.11,
+  "stringArray": [
+    "array1",
+    "array2"
+  ],
+  "numericArray": [
+    1.11,
+    2.22
+  ]
+}
