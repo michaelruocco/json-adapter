@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/michaelruocco/json-adapter.svg?branch=master)](https://travis-ci.org/michaelruocco/json-adapter)
 [![codecov](https://codecov.io/gh/michaelruocco/json-adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/michaelruocco/json-adapter)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a475e9dfd8b94547a678e5b4ec50e6cd)](https://www.codacy.com/manual/michaelruocco/json-adapter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/json-adapter&amp;utm_campaign=Badge_Grade)
-[ ![Download](https://api.bintray.com/packages/michaelruocco/maven/json-adapter/images/download.svg) ](https://bintray.com/michaelruocco/maven/json-adapter/_latestVersion)
 [![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/json-adapter?branch=master)](https://bettercodehub.com/)
+[![Download](https://api.bintray.com/packages/michaelruocco/maven/json-adapter/images/download.svg) ](https://bintray.com/michaelruocco/maven/json-adapter/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter)
 
 This is a small java adapter library that provides an interface to "hide"
 the details of using jackson from your application. It also provides some utility
