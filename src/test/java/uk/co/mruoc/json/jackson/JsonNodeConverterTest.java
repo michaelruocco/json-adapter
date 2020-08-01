@@ -11,7 +11,6 @@ import java.io.UncheckedIOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
@@ -37,9 +36,10 @@ public class JsonNodeConverterTest {
         ObjectCodec codec = mock(ObjectCodec.class);
         JsonParser parser = givenParserWithCodec(codec);
         JsonNode node = givenNodeFrom(codec, parser);
-        given(parser.readValueAs(any(TypeReference.class))).willThrow(IOException.class);
+        TypeReference<?> type = mock(TypeReference.class);
+        given(parser.readValueAs(type)).willThrow(IOException.class);
 
-        Throwable error = catchThrowable(() -> JsonNodeConverter.toCollection(node, parser));
+        Throwable error = catchThrowable(() -> JsonNodeConverter.toCollection(node, parser, type));
 
         assertThat(error)
                 .isInstanceOf(UncheckedIOException.class)

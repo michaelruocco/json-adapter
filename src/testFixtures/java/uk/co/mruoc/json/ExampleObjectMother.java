@@ -18,7 +18,11 @@ public class ExampleObjectMother {
                 .stringArray(Arrays.asList("array1", "array2"))
                 .numericArray(Arrays.asList(BigDecimal.valueOf(1.11), BigDecimal.valueOf(2.22)))
                 .optional(null)
-                .other(buildOther())
+                .other(buildOther("my-other-value", BigDecimal.valueOf(3.33)))
+                .otherArray(Arrays.asList(
+                        buildOther("my-other-value-1", BigDecimal.valueOf(4.44)),
+                        buildOther("my-other-value-2", BigDecimal.valueOf(5.55))
+                ))
                 .build();
     }
 
@@ -26,10 +30,10 @@ public class ExampleObjectMother {
         return loadContentFromClasspath("json/example-object.json");
     }
 
-    private static OtherExampleObject buildOther() {
+    private static OtherExampleObject buildOther(String stringValue, BigDecimal numericValue) {
         return OtherExampleObject.builder()
-                .otherString("my-other-value")
-                .otherNumeric(BigDecimal.valueOf(3.33))
+                .otherString(stringValue)
+                .otherNumeric(numericValue)
                 .build();
     }
 

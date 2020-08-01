@@ -6,20 +6,34 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 public class JsonNodeConverter {
+
+    private static final TypeReference<Collection<String>> STRING_COLLECTION = new TypeReference<Collection<String>>() {
+        // intentionally blank
+    };
+
+    private static final TypeReference<Collection<BigDecimal>> BIG_DECIMAL_COLLECTION = new TypeReference<Collection<BigDecimal>>() {
+        // intentionally blank
+    };
 
     private JsonNodeConverter() {
         // utility class
     }
 
-    public static <T> Collection<T> toCollection(JsonNode node, JsonParser parser) {
+    public static Collection<String> toStringCollection(JsonNode node, JsonParser parser) {
+        return toCollection(node, parser, STRING_COLLECTION);
+    }
+
+    public static Collection<BigDecimal> toBigDecimalCollection(JsonNode node, JsonParser parser) {
+        return toCollection(node, parser, BIG_DECIMAL_COLLECTION);
+    }
+
+    public static <T> T toCollection(JsonNode node, JsonParser parser, TypeReference<T> type) {
         try {
-            TypeReference<Collection<T>> typeReference = new TypeReference<Collection<T>>() {
-                // intentionally blank
-            };
-            return node.traverse(parser.getCodec()).readValueAs(typeReference);
+            return node.traverse(parser.getCodec()).readValueAs(type);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

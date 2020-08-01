@@ -17,6 +17,7 @@ public class ExampleObject {
     private final Collection<BigDecimal> numericArray;
     private final String optional;
     private final OtherExampleObject other;
+    private final Collection<OtherExampleObject> otherArray;
 
     public Optional<String> getOptional() {
         return Optional.ofNullable(optional);

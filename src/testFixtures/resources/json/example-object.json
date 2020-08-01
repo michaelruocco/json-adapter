@@ -10,7 +10,17 @@
     2.22
   ],
   "other": {
-    "otherString" : "my-other-value",
+    "otherString": "my-other-value",
     "otherNumeric": 3.33
-  }
+  },
+  "otherArray": [
+    {
+      "otherString": "my-other-value-1",
+      "otherNumeric": 4.44
+    },
+    {
+      "otherString": "my-other-value-2",
+      "otherNumeric": 5.55
+    }
+  ]
 }
