@@ -35,7 +35,7 @@ gradlew clean build
 
 ## Cleaning up the code
 
-Additionally you can run a small set of code cleaning rules that will clean
+You can also run a small set of code cleaning rules that will clean
 up things like spacing and other minor elements by running
 
 ```

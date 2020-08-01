@@ -8,6 +8,7 @@ public class ExampleObjectModule extends SimpleModule {
     public ExampleObjectModule() {
         super("example-object-module", Version.unknownVersion());
         addDeserializer(ExampleObject.class, new ExampleObjectDeserializer());
+        addDeserializer(OtherExampleObject.class, new OtherExampleObjectDeserializer());
     }
 
 }

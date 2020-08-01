@@ -11,14 +11,15 @@ import java.util.Optional;
 @Data
 public class ExampleObject {
 
-    private final String string1;
-    private final BigDecimal numeric1;
+    private final String string;
+    private final BigDecimal numeric;
     private final Collection<String> stringArray;
     private final Collection<BigDecimal> numericArray;
-    private final String optional1;
+    private final String optional;
+    private final OtherExampleObject other;
 
-    public Optional<String> getOptional1() {
-        return Optional.ofNullable(optional1);
+    public Optional<String> getOptional() {
+        return Optional.ofNullable(optional);
     }
 
 }

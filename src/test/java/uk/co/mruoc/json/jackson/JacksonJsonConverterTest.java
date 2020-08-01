@@ -21,10 +21,10 @@ class JacksonJsonConverterTest {
 
     @Test
     void shouldThrowExceptionIfObjectConversionFails() throws JsonProcessingException {
-        final Object object = new Object();
+        Object object = new Object();
         given(mapper.writeValueAsString(object)).willThrow(JsonProcessingException.class);
 
-        final Throwable error = catchThrowable(() -> converter.toJson(object));
+        Throwable error = catchThrowable(() -> converter.toJson(object));
 
         assertThat(error)
                 .isInstanceOf(JsonConversionException.class)
@@ -33,10 +33,10 @@ class JacksonJsonConverterTest {
 
     @Test
     void shouldThrowExceptionIfJsonStringConversionFails() throws IOException {
-        final String json = "json";
+        String json = "json";
         given(mapper.readValue(json, Object.class)).willThrow(JsonProcessingException.class);
 
-        final Throwable error = catchThrowable(() -> converter.toObject(json, Object.class));
+        Throwable error = catchThrowable(() -> converter.toObject(json, Object.class));
 
         assertThat(error)
                 .isInstanceOf(JsonConversionException.class)
@@ -45,22 +45,22 @@ class JacksonJsonConverterTest {
 
     @Test
     void shouldConvertObjectToJsonString() throws JsonProcessingException {
-        final Object object = new Object();
-        final String expectedJson = "json";
+        Object object = new Object();
+        String expectedJson = "json";
         given(mapper.writeValueAsString(object)).willReturn(expectedJson);
 
-        final String json = converter.toJson(object);
+        String json = converter.toJson(object);
 
         assertThat(json).isEqualTo(expectedJson);
     }
 
     @Test
     void shouldConvertJsonStringToObject() throws IOException {
-        final String json = "json";
-        final Object expectedObject = new Object();
+        String json = "json";
+        Object expectedObject = new Object();
         given(mapper.readValue(json, Object.class)).willReturn(expectedObject);
 
-        final Object object = converter.toObject(json, Object.class);
+        Object object = converter.toObject(json, Object.class);
 
         assertThat(object).isEqualTo(expectedObject);
     }

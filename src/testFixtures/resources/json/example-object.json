@@ -1,6 +1,6 @@
 {
-  "string1": "my-value-1",
-  "numeric1": 1.11,
+  "string": "my-value-1",
+  "numeric": 1.12,
   "stringArray": [
     "array1",
     "array2"
@@ -8,5 +8,9 @@
   "numericArray": [
     1.11,
     2.22
-  ]
+  ],
+  "other": {
+    "otherString" : "my-other-value",
+    "otherNumeric": 3.33
+  }
 }

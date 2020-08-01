@@ -15,12 +15,13 @@ public class ExampleObjectDeserializer extends StdDeserializer<ExampleObject> {
 
     @Override
     public ExampleObject deserialize(JsonParser parser, DeserializationContext context) {
-        final JsonNode node = JsonParserConverter.toNode(parser);
+        JsonNode node = JsonParserConverter.toNode(parser);
         return ExampleObject.builder()
-                .string1(node.get("string1").asText())
-                .numeric1(node.get("numeric1").decimalValue())
-                .stringArray(JsonNodeConverter.toStringCollection(node.get("stringArray"), parser))
-                .numericArray(JsonNodeConverter.toBigDecimalCollection(node.get("numericArray"), parser))
+                .string(node.get("string").asText())
+                .numeric(node.get("numeric").decimalValue())
+                .stringArray(JsonNodeConverter.toCollection(node.get("stringArray"), parser))
+                .numericArray(JsonNodeConverter.toCollection(node.get("numericArray"), parser))
+                .other(JsonNodeConverter.toObject(node.get("other"), parser, OtherExampleObject.class))
                 .build();
     }
 

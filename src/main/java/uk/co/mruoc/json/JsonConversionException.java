@@ -2,7 +2,7 @@ package uk.co.mruoc.json;
 
 public class JsonConversionException extends RuntimeException {
 
-    public JsonConversionException(final Throwable cause) {
+    public JsonConversionException(Throwable cause) {
         super(cause);
     }
 

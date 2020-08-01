@@ -11,6 +11,7 @@ import uk.co.mruoc.json.jackson.JacksonJsonConverter;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.*;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class DefaultJsonConverterFactory implements JsonConverterFactory {
         log.info("registering jackson modules {}", modules);
         return mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
                 .disable(WRITE_DATES_AS_TIMESTAMPS)
+                .enable(USE_BIG_DECIMAL_FOR_FLOATS)
                 .registerModule(new Jdk8Module())
                 .registerModules(modules);
     }

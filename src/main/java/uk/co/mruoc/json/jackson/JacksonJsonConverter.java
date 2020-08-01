@@ -11,24 +11,24 @@ public class JacksonJsonConverter implements JsonConverter {
 
     private final ObjectMapper mapper;
 
-    public JacksonJsonConverter(final ObjectMapper mapper) {
+    public JacksonJsonConverter(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
-    public String toJson(final Object object) {
+    public String toJson(Object object) {
         try {
             return mapper.writeValueAsString(object);
-        } catch (final JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             throw new JsonConversionException(e);
         }
     }
 
     @Override
-    public <T> T toObject(final String json, final Class<T> type) {
+    public <T> T toObject(String json, Class<T> type) {
         try {
             return mapper.readValue(json, type);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             throw new JsonConversionException(e);
         }
     }
