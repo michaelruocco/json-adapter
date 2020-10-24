@@ -6,6 +6,7 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/json-adapter?branch=master)](https://bettercodehub.com/)
 [![Download](https://api.bintray.com/packages/michaelruocco/maven/json-adapter/images/download.svg) ](https://bintray.com/michaelruocco/maven/json-adapter/_latestVersion)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.michaelruocco/json-adapter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.michaelruocco%22%20AND%20a:%22json-adapter%22)
 
 This is a small java adapter library that provides an interface to "hide"
 the details of using jackson from your application. It also provides some utility
@@ -30,7 +31,7 @@ dependencies {
 You can run the unit tests for this project by running:
 
 ```
-gradlew clean build
+./gradlew clean build
 ```
 
 ## Cleaning up the code
@@ -39,7 +40,7 @@ You can also run a small set of code cleaning rules that will clean
 up things like spacing and other minor elements by running
 
 ```
-gradlew clean spotlessApply build
+./gradlew clean spotlessApply build
 ```
 
 ## Checking dependencies
@@ -48,5 +49,5 @@ You can check the current dependencies used by the project to see whether
 they are currently up to date by running the following command:
 
 ```
-gradlew dependencyUpdates
+./gradlew dependencyUpdates
 ```

@@ -1,6 +1,12 @@
 language: java
-jdk: openjdk8
+jdk: openjdk11
 sudo: false
+
+addons:
+  sonarcloud:
+    organization: "michaelruocco"
+    token:
+      secure: "LwhN2DnkarBTFxBjUf8XhcWE3bT7NbM+mzTdQGBoL7GpYVOrETiEQPYxhUfmmNuazoMC4M9+fvNUchwGMiQCQ3GIr4Z+lUWHcm1nlHSNf+ZgJHrapJ7KckXPEbVxQw35AhMYU8t/n1o9ulSOnHyJOibS3zxyTEHxJEgkP9LD5fejQkal1kRAv02r8Y2Y488zlrjZeFKqDe+zflpEJIDZkoHO6WLsKjJcL+obn/huMU0z1lJEiK5RT0MRQMkDFLmeIi/gBisK0snRIQS5R/5/aMi86EC6Ys0v3ZFKt0PXV8xXfF7baor45KFdE0LCnvgOa8AjG5ogkdKBULulns92HDgU9st0Pop4caEANGbpqZJiH6NGD4G96WRm4b6rY0DrvC3sTqqVzn/6WBDCuF7RHDdEVJm+UFL9pcoxW47RUQxS0iprnqiaAr8bfc60WulwZm9Mh7ogPn23buh4ZJQjtFrAOV58t9u3T6lxcDmMUVYnhvpP7EP3Wd2IZWCfEtUX/WDxV8+z7irTcKmNhwpJsJ1d+rzJhTMBXFbxeV9FTK9DoX5oM6MQeguko1hhlVmrujgET1SxKNJjRnlebOnuzyoGECrskrl76RKCslM97M3UFnKeef6S7MMJ9VPpefssLZ1lNefeFhA879+3oCINYqP/j9lC4cDXi/WqpnSwUIc="
 
 branches:
   except:
@@ -27,7 +33,7 @@ stages:
     if: branch != master
 
   - name: release
-    if: branch = master
+    if: branch = release
 
 jobs:
   include:
