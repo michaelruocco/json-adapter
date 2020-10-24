@@ -5,7 +5,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a475e9dfd8b94547a678e5b4ec50e6cd)](https://www.codacy.com/manual/michaelruocco/json-adapter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/json-adapter&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/json-adapter?branch=master)](https://bettercodehub.com/)
 [![Download](https://api.bintray.com/packages/michaelruocco/maven/json-adapter/images/download.svg) ](https://bintray.com/michaelruocco/maven/json-adapter/_latestVersion)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.michaelruocco/json-adapter)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.michaelruocco/json-adapter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.michaelruocco%22%20AND%20a:%22json-adapter%22)
 
 This is a small java adapter library that provides an interface to "hide"
