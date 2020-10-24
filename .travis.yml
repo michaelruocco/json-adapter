@@ -33,7 +33,7 @@ stages:
     if: branch != master
 
   - name: release
-    if: branch = release
+    if: branch = master
 
 jobs:
   include:
