@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-public class JsonNodeConverterTest {
+class JsonNodeConverterTest {
 
     @Test
     void toObjectShouldThrowUncheckedIOExceptionIfJacksonThrowsIOException() throws IOException {

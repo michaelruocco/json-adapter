@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ExampleObjectSerdeTest {
+class ExampleObjectSerdeTest {
 
     private static final JsonConverter CONVERTER = new DefaultJsonConverterFactory(new ExampleObjectModule()).build();
 
