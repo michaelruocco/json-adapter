@@ -11,13 +11,14 @@ buildscript {
 plugins {
     id "java-library"
     id "java-test-fixtures"
-    id "com.github.ben-manes.versions" version "0.33.0"
     id "jacoco"
+    id "com.diffplug.spotless" version "5.7.0"
+    id "com.github.ben-manes.versions" version "0.33.0"
+    id "pl.allegro.tech.build.axion-release" version "1.12.1"
+    id "org.sonarqube" version "3.0"
+    id "maven-publish"
     id "com.jfrog.bintray" version "1.8.5"
     id "com.jfrog.artifactory" version "4.17.2"
-    id "pl.allegro.tech.build.axion-release" version "1.12.1"
-    id "maven-publish"
-    id "com.diffplug.spotless" version "5.7.0"
 }
 
 group "com.github.michaelruocco"
@@ -35,19 +36,21 @@ repositories {
 }
 
 ext {
-    lombokVersion = "1.18.16"
     slf4jVersion = "1.7.30"
+    lombokVersion = "1.18.16"
     jacksonVersion = "2.11.3"
 
     junitVersion = "5.7.0"
+    junitPioneerVersion = "1.0.0"
+    mockitoVersion = "3.5.13"
 }
 
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    
+
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
@@ -66,25 +69,13 @@ dependencies {
     testFixturesImplementation "com.github.michaelruocco:file-loader:5.0.1"
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
-}
-
-spotless {
-    java {
-        removeUnusedImports()
-        trimTrailingWhitespace()
-        indentWithSpaces(4)
-        endWithNewline()
-
-        replace "Not enough space after if", "if(", "if ("
-        replaceRegex "Too much space after if", "if +\\(", "if ("
-
-        replace "Not enough space after for", "for(", "for ("
-        replaceRegex "Too much space after for", "for +\\(", "for ("
-
-        replace "Not enough space after while", "while(", "while ("
-        replaceRegex "Too much space after while", "while +\\(", "while ("
+    systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showStandardStreams true
     }
 }
 
@@ -93,25 +84,24 @@ jacoco {
 }
 
 jacocoTestReport {
+    sourceSets sourceSets.main
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier.set("sources")
-    from sourceSets.main.allSource
+sonarqube {
+    properties {
+        property "sonar.projectKey", "michaelruocco_json-adapter"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml"
+    }
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier.set("javadoc")
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 def pomConfig = {
@@ -122,6 +112,7 @@ def pomConfig = {
             distribution "repo"
         }
     }
+
     developers {
         developer {
             id "mruoc"
@@ -139,15 +130,10 @@ publishing {
     publications {
         mavenPublication(MavenPublication) {
             from components.java
-            artifact sourcesJar
-            artifact javadocJar
-            groupId project.group
-            artifactId "json-adapter"
-            version project.version
             pom.withXml {
                 def root = asNode()
-                root.appendNode("description", "Library to hide some complexity when using jackson")
-                root.appendNode("name", "jackson-json-api")
+                root.appendNode("description", "Library to mask fields from a json payload based on json path configurations")
+                root.appendNode("name", "json-adapter")
                 root.appendNode("url", "https://github.com/michaelruocco/json-adapter")
                 root.children().last() + pomConfig
             }
@@ -160,7 +146,7 @@ bintray {
     key = System.getenv("BINTRAY_KEY")
     publications = ["mavenPublication"]
     publish = true
-    
+
     pkg {
         repo = "maven"
         name = "json-adapter"
@@ -199,6 +185,24 @@ artifactory {
         repoKey = "jcenter"
     }
     clientConfig.info.setBuildNumber(System.getProperty("build.number"))
+}
+
+spotless {
+    java {
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        indentWithSpaces(4)
+        endWithNewline()
+
+        replace 'Not enough space after if', 'if(', 'if ('
+        replaceRegex 'Too much space after if', 'if +\\(', 'if ('
+
+        replace 'Not enough space after for', 'for(', 'for ('
+        replaceRegex 'Too much space after for', 'for +\\(', 'for ('
+
+        replace 'Not enough space after while', 'while(', 'while ('
+        replaceRegex 'Too much space after while', 'while +\\(', 'while ('
+    }
 }
 
 dependencyUpdates.resolutionStrategy {
