@@ -1,5 +1,6 @@
 # JSON Adapter
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/49f4caabc5c14501b0b2fd76206559de)](https://app.codacy.com/gh/michaelruocco/json-adapter?utm_source=github.com&utm_medium=referral&utm_content=michaelruocco/json-adapter&utm_campaign=Badge_Grade_Settings)
 [![Build](https://github.com/michaelruocco/library-template/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/library-template/actions)
 [![codecov](https://codecov.io/gh/michaelruocco/json-adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/michaelruocco/json-adapter)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a475e9dfd8b94547a678e5b4ec50e6cd)](https://www.codacy.com/manual/michaelruocco/json-adapter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/json-adapter&amp;utm_campaign=Badge_Grade)
