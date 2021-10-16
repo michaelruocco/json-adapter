@@ -104,7 +104,7 @@ java {
     withSourcesJar()
 }
 
-def gitUrl = "https://github.com/michaelruocco/library-template"
+def gitUrl = "https://github.com/michaelruocco/json-adapter"
 def pomConfig = {
     licenses {
         license {
@@ -142,7 +142,7 @@ publishing {
             from components.java
             pom.withXml {
                 def root = asNode()
-                root.appendNode("description", "Template repo to speed up creating new library projects")
+                root.appendNode("description", "Library to hide usage of jackson from most classes and helpers for easier testing")
                 root.appendNode("name", project.name)
                 root.appendNode("url", gitUrl)
                 root.children().last() + pomConfig
