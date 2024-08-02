@@ -1,6 +1,7 @@
 package uk.co.mruoc.json.jackson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import uk.co.mruoc.json.JsonConversionException;
 import uk.co.mruoc.json.JsonConverter;
@@ -28,6 +29,14 @@ public class JacksonJsonConverter implements JsonConverter {
     public <T> T toObject(String json, Class<T> type) {
         try {
             return mapper.readValue(json, type);
+        } catch (IOException e) {
+            throw new JsonConversionException(e);
+        }
+    }
+
+    public JsonNode toJsonNode(String json) {
+        try {
+            return mapper.readTree(json);
         } catch (IOException e) {
             throw new JsonConversionException(e);
         }
