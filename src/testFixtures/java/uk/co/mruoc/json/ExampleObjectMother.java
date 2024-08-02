@@ -3,7 +3,7 @@ package uk.co.mruoc.json;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-import static uk.co.mruoc.file.content.ContentLoader.loadContentFromClasspath;
+import static uk.co.mruoc.file.FileLoader.loadContentFromClasspath;
 
 public class ExampleObjectMother {
 

@@ -3,7 +3,6 @@
 [![Build](https://github.com/michaelruocco/json-adapter/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/json-adapter/actions)
 [![codecov](https://codecov.io/gh/michaelruocco/json-adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/michaelruocco/json-adapter)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd359beb6cb74237add4bed29d8e5682)](https://www.codacy.com/gh/michaelruocco/json-adapter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/json-adapter&amp;utm_campaign=Badge_Grade)
-[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/json-adapter?branch=master)](https://bettercodehub.com/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_json-adapter&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_json-adapter)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_json-adapter&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_json-adapter)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_json-adapter&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_json-adapter)
@@ -39,5 +38,5 @@ dependencies {
 // runs tests
 // checks for gradle issues
 // checks dependency versions
-./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build
+./gradlew clean currentVersion dependencyUpdates criticalLintGradle spotlessApply build
 ```
